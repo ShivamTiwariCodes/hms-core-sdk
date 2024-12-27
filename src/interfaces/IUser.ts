@@ -3,15 +3,15 @@ export interface IUser {
     name: string;
     email: string;
     phoneNumber: string;
-    role: "Patient" | "Doctor" | "Admin";
+    role: UserRole;
     password: string;
     address?: string;
     dateOfBirth?: string; // ISO format (YYYY-MM-DD)
-    gender?: "Male" | "Female" | "Non-binary" | "Other";
+    gender?: Gender;
     profileImage?: string;
 }
 
-interface IPatient extends IUser {
+export interface IPatient extends IUser {
     medicalHistory?: string[]; // List of medical records/summary
     insuranceDetails?: {
         provider: string;
@@ -25,7 +25,7 @@ interface IPatient extends IUser {
     preferredDoctor?: string; // Doctor ID
 }
 
-interface IDoctor extends IUser {
+export interface IDoctor extends IUser {
     specialization: string;
     licenseNumber: string;
     yearsOfExperience: number;
@@ -39,7 +39,20 @@ interface IDoctor extends IUser {
 }
 
 
-interface IAdmin extends IUser {
+export interface IAdmin extends IUser {
     employeeId: string;
     department: string;
+}
+
+export enum UserRole {
+    Patient,
+    Doctor,
+    Admin
+}
+
+export enum Gender {
+    Male,
+    Female,
+    Non_binary,
+    Other
 }

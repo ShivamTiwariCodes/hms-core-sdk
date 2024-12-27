@@ -1,9 +1,9 @@
-export default interface IAppointment {
+export interface IAppointment {
     id: string;
     patientId: string;
     doctorId: string;
     appointmentDateTime: string;
-    status: "Scheduled" | "Completed" | "Cancelled";
+    status: AppointmentStatus;
     reasonForVisit: string;
     notes?: string;
     createdAt: string;
@@ -18,11 +18,20 @@ export default interface IAppointment {
         result: string;
         date: string;
     }[];
-    consultationType?: "In-person" | "Online";
+    consultationType?: ConsultationType;
     duration?: number;
     paymentDetails?: {
         amount: number;
         method: "Cash" | "Card" | "Online";
         status: "Paid" | "Pending";
     };
+}
+export declare enum AppointmentStatus {
+    Scheduled = 0,
+    Completed = 1,
+    Cancelled = 2
+}
+export declare enum ConsultationType {
+    In_person = 0,
+    Online = 1
 }
